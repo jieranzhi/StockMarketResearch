@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ShareholderResearch.Model;
+using ShareholderResearch.Models;
 
-namespace ShareholderResearch.UI
+namespace ShareholderResearch.Views
 {
     public partial class UI_TopTenShareholder : UserControl
     {

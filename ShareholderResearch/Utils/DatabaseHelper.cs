@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Data.SQLite;
 using System.Globalization;
-using ShareholderResearch.Model;
+using ShareholderResearch.Models;
 
 namespace ShareholderResearch.Utils
 {

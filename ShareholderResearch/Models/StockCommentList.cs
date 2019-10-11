@@ -6,7 +6,7 @@
 //
 //    var stockCommentList = StockCommentList.FromJson(jsonString);
 
-namespace ShareholderResearch.Model
+namespace ShareholderResearch.Models
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace ShareholderResearch.UI
+﻿namespace ShareholderResearch.Views
 {
     partial class UI_Setting
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelLeftFunction = new System.Windows.Forms.Panel();
-            this.uI_OptionDatabase = new ShareholderResearch.UI.UI_Option();
+            this.uI_OptionDatabase = new ShareholderResearch.Views.UI_Option();
             this.panelClient = new System.Windows.Forms.Panel();
             this.panelLeftFunction.SuspendLayout();
             this.SuspendLayout();

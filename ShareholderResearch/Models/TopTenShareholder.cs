@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShareholderResearch.Model
+namespace ShareholderResearch.Models
 {
     public class TopTenShareholder
     {

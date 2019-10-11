@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ShareholderResearch.UI
+namespace ShareholderResearch.Views
 {
-    public partial class UI_Setting : UI_Base
+    public partial class UI_Loading : UserControl
     {
-        public UI_Setting()
+        public UI_Loading()
         {
             InitializeComponent();
         }

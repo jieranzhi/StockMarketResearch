@@ -1,4 +1,4 @@
-﻿namespace ShareholderResearch.UI
+﻿namespace ShareholderResearch.Views
 {
     partial class UI_QgqpData
     {

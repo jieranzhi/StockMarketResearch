@@ -69,15 +69,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\UI_Option.cs">
+    <Compile Include="Views\UI_Option.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\UI_Option.Designer.cs">
+    <Compile Include="Views\UI_Option.Designer.cs">
       <DependentUpon>UI_Option.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\DatabaseHelper.cs" />
     <Compile Include="Utils\DataCollector.cs" />
-    <Compile Include="Model\FinancialReport.cs" />
+    <Compile Include="Models\FinancialReport.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,39 +86,39 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\StockCommentList.cs" />
-    <Compile Include="Model\StockList.cs" />
+    <Compile Include="Models\StockCommentList.cs" />
+    <Compile Include="Models\StockList.cs" />
     <Compile Include="SystemSetting.cs" />
-    <Compile Include="Model\TopTenShareholder.cs" />
+    <Compile Include="Models\TopTenShareholder.cs" />
     <Compile Include="Utils\JsonParser.cs" />
-    <Compile Include="UI\UI_Base.cs">
+    <Compile Include="Views\UI_Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\UI_Base.Designer.cs">
+    <Compile Include="Views\UI_Base.Designer.cs">
       <DependentUpon>UI_Base.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UI_Loading.cs">
+    <Compile Include="Views\UI_Loading.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\UI_Loading.Designer.cs">
+    <Compile Include="Views\UI_Loading.Designer.cs">
       <DependentUpon>UI_Loading.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UI_QgqpData.cs">
+    <Compile Include="Views\UI_QgqpData.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\UI_QgqpData.Designer.cs">
+    <Compile Include="Views\UI_QgqpData.Designer.cs">
       <DependentUpon>UI_QgqpData.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UI_Setting.cs">
+    <Compile Include="Views\UI_Setting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\UI_Setting.Designer.cs">
+    <Compile Include="Views\UI_Setting.Designer.cs">
       <DependentUpon>UI_Setting.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\UI_TopTenShareholder.cs">
+    <Compile Include="Views\UI_TopTenShareholder.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\UI_TopTenShareholder.Designer.cs">
+    <Compile Include="Views\UI_TopTenShareholder.Designer.cs">
       <DependentUpon>UI_TopTenShareholder.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
@@ -134,22 +134,22 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\UI_Base.resx">
+    <EmbeddedResource Include="Views\UI_Base.resx">
       <DependentUpon>UI_Base.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UI_Loading.resx">
+    <EmbeddedResource Include="Views\UI_Loading.resx">
       <DependentUpon>UI_Loading.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UI_Option.resx">
+    <EmbeddedResource Include="Views\UI_Option.resx">
       <DependentUpon>UI_Option.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UI_QgqpData.resx">
+    <EmbeddedResource Include="Views\UI_QgqpData.resx">
       <DependentUpon>UI_QgqpData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UI_Setting.resx">
+    <EmbeddedResource Include="Views\UI_Setting.resx">
       <DependentUpon>UI_Setting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\UI_TopTenShareholder.resx">
+    <EmbeddedResource Include="Views\UI_TopTenShareholder.resx">
       <DependentUpon>UI_TopTenShareholder.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />

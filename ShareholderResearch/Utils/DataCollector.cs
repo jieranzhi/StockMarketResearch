@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using ShareholderResearch.Model;
+using ShareholderResearch.Models;
 
 namespace ShareholderResearch.Utils
 {

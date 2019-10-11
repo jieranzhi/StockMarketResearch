@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ShareholderResearch.UI
+namespace ShareholderResearch.Views
 {
     public partial class UI_Option : UserControl
     {

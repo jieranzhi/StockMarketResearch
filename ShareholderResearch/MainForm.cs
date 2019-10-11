@@ -11,8 +11,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Data.SQLite;
 using ShareholderResearch.Utils;
-using ShareholderResearch.Model;
-using ShareholderResearch.UI;
+using ShareholderResearch.Models;
+using ShareholderResearch.Views;
 
 namespace ShareholderResearch
 {
@@ -127,7 +127,7 @@ namespace ShareholderResearch
                     }
                     if (topTenShareholder.lstShareHoldingRecord.Count > 0)
                     {
-                        UI.UI_TopTenShareholder ui = new UI.UI_TopTenShareholder();
+                        Views.UI_TopTenShareholder ui = new Views.UI_TopTenShareholder();
                         ui.PopulateDataInTable(topTenShareholder);
                         int heightIntend = (topTenShareholder.lstShareHoldingRecord.Count + 2) * 23 + 38;
                         ui.Height = heightIntend < ui.minimumHeight ? ui.minimumHeight : heightIntend;
@@ -231,7 +231,7 @@ namespace ShareholderResearch
                 }
                 if (commentList.Count > 0)
                 {
-                    var ui = new UI.UI_QgqpData(stockCode);
+                    var ui = new Views.UI_QgqpData(stockCode);
                     ui.FillData(commentList);
                     int heightIntend = (commentList.Count) * 40 + 48;
                     ui.Height = heightIntend;
@@ -272,7 +272,7 @@ namespace ShareholderResearch
                 }
                 if (commentList.Count > 0)
                 {
-                    var ui = new UI.UI_QgqpData(proMin * 100, proMax * 100, commentList.Count);
+                    var ui = new Views.UI_QgqpData(proMin * 100, proMax * 100, commentList.Count);
                     ui.FillData(commentList);
                     int heightIntend = (commentList.Count + 2) * 23 + 38;
                     ui.Height = heightIntend < ui.minimumHeight ? ui.minimumHeight : heightIntend;
@@ -511,15 +511,15 @@ namespace ShareholderResearch
 
         public void DisplayLoadingUI(bool display)
         {
-            if (panel_webBrowser.Controls.OfType<UI.UI_Loading>().Any())
+            if (panel_webBrowser.Controls.OfType<Views.UI_Loading>().Any())
             {
-                var uiLoading = (panel_webBrowser.Controls.OfType<UI.UI_Loading>().ElementAt(0) as UI.UI_Loading);
+                var uiLoading = (panel_webBrowser.Controls.OfType<Views.UI_Loading>().ElementAt(0) as Views.UI_Loading);
                 uiLoading.Visible = display;
                 uiLoading.BringToFront();
             }
             else
             {
-                UI.UI_Loading uiLoading = new UI.UI_Loading();
+                Views.UI_Loading uiLoading = new Views.UI_Loading();
                 uiLoading.Visible = display;
                 uiLoading.Dock = DockStyle.Fill;
                 panel_webBrowser.Controls.Add(uiLoading);
