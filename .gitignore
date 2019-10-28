@@ -1,4 +1,6 @@
 .vs/*
 package/*
 /bin/*
+/bin/
 /obj/*
+/obj/
