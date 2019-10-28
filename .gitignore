@@ -1,6 +1,4 @@
-.vs/*
-package/*
-/bin/*
-/bin/
-/obj/*
-/obj/
+.vs/
+packages/
+bin/
+obj/
