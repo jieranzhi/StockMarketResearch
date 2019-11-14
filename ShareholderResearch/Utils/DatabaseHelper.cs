@@ -141,7 +141,7 @@ namespace ShareholderResearch.Utils
         {
             var queryKey = "%" + keyword + "%";
             string sql = $"select * from stockList where stockCode like {SQLString(queryKey)} or stockName like {SQLString(queryKey)}";
-            SQLiteCommand cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
+            var cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
             return cmd.ExecuteReader();
         }
         // main query
@@ -216,14 +216,46 @@ namespace ShareholderResearch.Utils
         // save to database
         public static void UpdateTopTenStockholder(string stockCode, Dictionary<string,string> sdltgd)
         {
-            string sql = $"insert or replace into topTenStockholder (_id, ranking, stockCode, dateOfRecord, " +
-                $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
-                $"statusChange, changeRate) values ((select _id from topTenStockholder where " +
-                $"stockCode == {SQLString(stockCode)} and shareholderName=={SQLString(sdltgd["gdmc"])} and dateOfRecord=={SQLString(sdltgd["rq"])}), " +
-                $"{SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
-                $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
-            SQLiteCommand cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
-            cmd.ExecuteNonQuery();
+            var sqlId = "select _id from topTenStockholder where " +
+                $"stockCode == {SQLString(stockCode)} and shareholderName=={SQLString(sdltgd["gdmc"])} and dateOfRecord=={SQLString(sdltgd["rq"])}";
+            var cmd = new SQLiteCommand(sqlId, SystemSetting.sqliteConnection);
+            var reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                var _id = "null";
+                while (reader.Read())
+                {
+                    _id = reader["_id"].ToString();
+                }
+                // replace
+                var sql = $"replace into topTenStockholder (_id, ranking, stockCode, dateOfRecord, " +
+                    $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
+                    $"statusChange, changeRate) values "+
+                    $"({_id}, {SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
+                    $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
+                var cmdReplace = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
+                cmdReplace.ExecuteNonQuery();
+            }
+            else
+            {
+                // insert
+                var sql = $"insert into topTenStockholder (ranking, stockCode, dateOfRecord, " +
+                    $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
+                    $"statusChange, changeRate) values " +
+                    $"({SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
+                    $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
+                var cmdInsert = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
+                cmdInsert.ExecuteNonQuery();
+            }
+
+            //var sql = $"insert or replace into topTenStockholder (_id, ranking, stockCode, dateOfRecord, " +
+            //    $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
+            //    $"statusChange, changeRate) values ((select _id from topTenStockholder where " +
+            //    $"stockCode == {SQLString(stockCode)} and shareholderName=={SQLString(sdltgd["gdmc"])} and dateOfRecord=={SQLString(sdltgd["rq"])}), " +
+            //    $"{SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
+            //    $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
+            //var cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
+            //cmd.ExecuteNonQuery();
         }
         // save to database
         public static void UpdateFinancialReport(string stockCode, Dictionary<string, string> report)
@@ -264,6 +296,18 @@ namespace ShareholderResearch.Utils
             }
 
             return false;
+        }
+        // optimize the batch operation
+        public static void OptimizationBegin()
+        {
+            SQLiteCommand cmd = new SQLiteCommand("begin", SystemSetting.sqliteConnection);
+            cmd.ExecuteNonQuery();
+        }       
+        // optimize the batch operation
+        public static void OptimizationEnd()
+        {
+            SQLiteCommand cmd = new SQLiteCommand("end", SystemSetting.sqliteConnection);
+            cmd.ExecuteNonQuery();
         }
     }
 }
