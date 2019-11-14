@@ -24,6 +24,7 @@ namespace ShareholderResearch
         public static string databaseFileDir;
         public static string systemDir;
         public static string errorLogDir;
+        public static string downloadJsonDir;
         public static SQLiteConnection sqliteConnection;
         public static List<string> lstTopTenShareholder;
         public static BindingList<string> lstTopTenShareholderDisplay;

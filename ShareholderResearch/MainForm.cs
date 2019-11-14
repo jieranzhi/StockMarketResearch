@@ -359,67 +359,102 @@ namespace ShareholderResearch
         {
             try
             {
+                var fileDir = SystemSetting.downloadJsonDir + "topten.tmp";
                 int dataCount = DatabaseHelper.Get006030StockRecordCount("stockList");
-                var reader = DatabaseHelper.GetAll006030StockRecords("stockList");
-                var stockCodeList = new List<string>();
-                while (reader.Read())
-                {
-                    stockCodeList.Add(reader[1].ToString());
-                }
-                var stockCodeTemp = "";
-                if (stockCodeList.Any())
-                {
-                    var topTenShareholderList = new Dictionary<string, TopTenShareholderJsonPackage>();
-                    int i = 0;
-                    try
-                    {
-                        foreach (var stockCode in stockCodeList)
-                        {
-                            i++;
-                            stockCodeTemp = stockCode;
-                            var dataCollector = new DataCollector();
-                            string rawTopTenShareHolder
-                                = JsonEscape(dataCollector.GetHttpResponse(SystemSetting.rootUrlOfTopTenShareHolder + stockCode, false).Result);
-                            var package = TopTenShareholderJsonParser.FromJson(rawTopTenShareHolder);
-                            topTenShareholderList.Add(stockCode, package);
-                            progress.Report(50.0 * i / dataCount);
-                            Console.WriteLine($"{i}:{stockCode} --- {rawTopTenShareHolder}");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        SystemSetting.LogAndDisplayError(ex, $"{stockCodeTemp} MainForm.cs, line 96");
-                    }
 
+                var topTenShareholderList = new Dictionary<string, TopTenShareholderJsonPackage>();
+                var jsonCollection = new StringBuilder(dataCount);
+                var stockCodeTemp = "";
+
+                int i = 0;
+                if (File.Exists(fileDir))
+                {
+                    var rawJsonList = File.ReadAllLines(fileDir);
+                    foreach (var record in rawJsonList)
+                    {
+                        i++;
+                        var line = record.Split(new string[] { "|||" }, StringSplitOptions.None);
+                        var stockCode = line[0];
+                        var rawTopTenShareHolder = line[1];
+                        var package = TopTenShareholderJsonParser.FromJson(rawTopTenShareHolder);
+                        topTenShareholderList.Add(stockCode, package);
+                        progress.Report(50.0 * i / dataCount);
+                        Console.WriteLine($"{i}:{stockCode} --- {rawTopTenShareHolder}");
+                    }
+                }
+                else
+                {
                     try
                     {
-                        i = 0;
-                        if (topTenShareholderList.Any())
+                        var reader = DatabaseHelper.GetAll006030StockRecords("stockList");
+                        var stockCodeList = new List<string>();
+                        while (reader.Read())
                         {
-                            DatabaseHelper.OptimizationBegin();
-                            foreach (var dicPackage in topTenShareholderList)
+                            stockCodeList.Add(reader[1].ToString());
+                        }
+                        if (stockCodeList.Any())
+                        {
+                            foreach (var stockCode in stockCodeList)
                             {
                                 i++;
-                                var stockCode = dicPackage.Key;
-                                var package = dicPackage.Value;
                                 stockCodeTemp = stockCode;
-                                foreach (Sdltgd sdltgdItem in package.Sdltgd)
-                                {
-                                    foreach (var sdltgd in sdltgdItem.SdltgdSdltgd)
-                                    {
-                                        DatabaseHelper.UpdateTopTenStockholder(stockCode, sdltgd);
-                                        Console.WriteLine($"{i}/{dataCount}:{stockCode} --- {sdltgd["gdmc"]}");
-                                    }
-                                }
-                                progress.Report(50.0 * i / dataCount + 50);
+                                var dataCollector = new DataCollector();
+                                var rawTopTenShareHolder
+                                    = JsonEscape(dataCollector.GetHttpResponse(SystemSetting.rootUrlOfTopTenShareHolder + stockCode, false).Result);
+                                var package = TopTenShareholderJsonParser.FromJson(rawTopTenShareHolder);
+                                topTenShareholderList.Add(stockCode, package);
+                                jsonCollection.AppendLine($"{stockCode}|||{rawTopTenShareHolder}");
+                                progress.Report(50.0 * i / dataCount);
+                                Console.WriteLine($"{i}:{stockCode} --- {rawTopTenShareHolder}");
                             }
-                            DatabaseHelper.OptimizationEnd();
                         }
                     }
                     catch (Exception ex)
                     {
                         SystemSetting.LogAndDisplayError(ex, $"{stockCodeTemp} MainForm.cs, line 96");
+                        return;
                     }
+
+                    if (jsonCollection.Length > 0)
+                    {
+                        File.WriteAllText(fileDir, jsonCollection.ToString());
+                    }
+                }
+
+                try
+                {
+                    i = 0;
+                    if (topTenShareholderList.Any())
+                    {
+                        DatabaseHelper.OptimizationBegin();
+                        foreach (var dicPackage in topTenShareholderList)
+                        {
+                            i++;
+                            var stockCode = dicPackage.Key;
+                            var package = dicPackage.Value;
+                            stockCodeTemp = stockCode;
+                            foreach (Sdltgd sdltgdItem in package.Sdltgd)
+                            {
+                                foreach (var sdltgd in sdltgdItem.SdltgdSdltgd)
+                                {
+                                    DatabaseHelper.UpdateTopTenStockholder(stockCode, sdltgd);
+                                    Console.WriteLine($"{i}/{dataCount}:{stockCode} --- {sdltgd["gdmc"]}");
+                                }
+                            }
+                            progress.Report(50.0 * i / dataCount + 50);
+                        }
+                        DatabaseHelper.OptimizationEnd();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SystemSetting.LogAndDisplayError(ex, $"{stockCodeTemp} MainForm.cs, line 96");
+                    return;
+                }
+
+                if (File.Exists(fileDir))
+                {
+                    File.Delete(fileDir);
                 }
             }
             catch (Exception ex)
@@ -568,7 +603,9 @@ namespace ShareholderResearch
             SystemSetting.systemDir = Environment.CurrentDirectory;
             SystemSetting.databaseFileDir = SystemSetting.systemDir + "\\record.db";
             SystemSetting.errorLogDir = SystemSetting.systemDir + "\\error_log\\";
+            SystemSetting.downloadJsonDir = SystemSetting.systemDir + "\\download\\";
             SystemSetting.CheckDirectory(SystemSetting.errorLogDir);
+            SystemSetting.CheckDirectory(SystemSetting.downloadJsonDir);
             DatabaseHelper.LoadDatabase();
             LoadShareholderNameList();
         }

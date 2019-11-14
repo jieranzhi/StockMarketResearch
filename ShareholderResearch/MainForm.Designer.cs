@@ -40,13 +40,17 @@
             this.listBox_shareholders = new System.Windows.Forms.ListBox();
             this.panel20 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.pictureBox_next = new System.Windows.Forms.PictureBox();
+            this.pictureBox_previous = new System.Windows.Forms.PictureBox();
             this.comboBox_paging = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox_stockholdername = new System.Windows.Forms.TextBox();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.pictureBox_search = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox_reloadShareholderList = new System.Windows.Forms.PictureBox();
             this.label_shareholderList = new System.Windows.Forms.Label();
             this.listBox_stock = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -59,10 +63,13 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.textBox_stockquery = new System.Windows.Forms.TextBox();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.pictureBoxSearchStock = new System.Windows.Forms.PictureBox();
             this.panel19 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxZhuLiControlmax = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -73,38 +80,31 @@
             this.label_manuallyInputp = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.label_manuallyInput = new System.Windows.Forms.Label();
+            this.pictureBox_OpenLocalJsonFile = new System.Windows.Forms.PictureBox();
             this.textBox_manuallyInput_stockCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.label_getqgqpdata = new System.Windows.Forms.Label();
-            this.label_getfinancialreportp = new System.Windows.Forms.Label();
-            this.label_uploadsocketlistp = new System.Windows.Forms.Label();
-            this.label_updatep = new System.Windows.Forms.Label();
-            this.panel_headbar = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.labelverison = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.panel_base = new System.Windows.Forms.Panel();
-            this.panelTool = new System.Windows.Forms.Panel();
-            this.panelWorkspace = new System.Windows.Forms.Panel();
-            this.pictureBox_next = new System.Windows.Forms.PictureBox();
-            this.pictureBox_previous = new System.Windows.Forms.PictureBox();
-            this.pictureBox_search = new System.Windows.Forms.PictureBox();
-            this.pictureBox_reloadShareholderList = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSearchStock = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox_OpenLocalJsonFile = new System.Windows.Forms.PictureBox();
             this.pictureBox_getqgqpdata = new System.Windows.Forms.PictureBox();
             this.pictureBox_uploadsocketlist = new System.Windows.Forms.PictureBox();
+            this.label_getfinancialreportp = new System.Windows.Forms.Label();
             this.pictureBox_getfinancialreport = new System.Windows.Forms.PictureBox();
+            this.label_uploadsocketlistp = new System.Windows.Forms.Label();
+            this.label_updatep = new System.Windows.Forms.Label();
             this.pictureBox_update = new System.Windows.Forms.PictureBox();
+            this.panel_headbar = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBoxConfig = new System.Windows.Forms.PictureBox();
             this.pictureBox_maximize = new System.Windows.Forms.PictureBox();
             this.pictureBox_minimize = new System.Windows.Forms.PictureBox();
             this.pictureBox_close = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelverison = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox_logo = new System.Windows.Forms.PictureBox();
+            this.panel_base = new System.Windows.Forms.Panel();
+            this.panelWorkspace = new System.Windows.Forms.Panel();
+            this.panelTool = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -118,46 +118,46 @@
             this.panel14.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_next)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_previous)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_search)).BeginInit();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_reloadShareholderList)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchStock)).BeginInit();
             this.panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_controlPanel.SuspendLayout();
             this.panel_manuallyInput.SuspendLayout();
             this.panel12.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel_headbar.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel_base.SuspendLayout();
-            this.panelTool.SuspendLayout();
-            this.panelWorkspace.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_next)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_previous)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_search)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_reloadShareholderList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchStock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_OpenLocalJsonFile)).BeginInit();
+            this.panel10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_getqgqpdata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_uploadsocketlist)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_getfinancialreport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_update)).BeginInit();
+            this.panel_headbar.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_maximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_close)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).BeginInit();
+            this.panel_base.SuspendLayout();
+            this.panelWorkspace.SuspendLayout();
+            this.panelTool.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -293,6 +293,32 @@
             this.panel11.Size = new System.Drawing.Size(107, 29);
             this.panel11.TabIndex = 0;
             // 
+            // pictureBox_next
+            // 
+            this.pictureBox_next.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_next.BackgroundImage = global::ShareholderResearch.Properties.Resources.next;
+            this.pictureBox_next.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox_next.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox_next.Location = new System.Drawing.Point(80, 5);
+            this.pictureBox_next.Name = "pictureBox_next";
+            this.pictureBox_next.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_next.TabIndex = 6;
+            this.pictureBox_next.TabStop = false;
+            this.pictureBox_next.Click += new System.EventHandler(this.pictureBox_next_Click);
+            // 
+            // pictureBox_previous
+            // 
+            this.pictureBox_previous.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_previous.BackgroundImage = global::ShareholderResearch.Properties.Resources.back;
+            this.pictureBox_previous.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox_previous.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox_previous.Location = new System.Drawing.Point(3, 5);
+            this.pictureBox_previous.Name = "pictureBox_previous";
+            this.pictureBox_previous.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_previous.TabIndex = 5;
+            this.pictureBox_previous.TabStop = false;
+            this.pictureBox_previous.Click += new System.EventHandler(this.pictureBox_previous_Click);
+            // 
             // comboBox_paging
             // 
             this.comboBox_paging.BackColor = System.Drawing.Color.Silver;
@@ -359,6 +385,20 @@
             this.panel8.Size = new System.Drawing.Size(23, 21);
             this.panel8.TabIndex = 1;
             // 
+            // pictureBox_search
+            // 
+            this.pictureBox_search.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_search.BackgroundImage = global::ShareholderResearch.Properties.Resources.search_32px_1181386_easyicon_net;
+            this.pictureBox_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_search.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox_search.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox_search.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox_search.Name = "pictureBox_search";
+            this.pictureBox_search.Size = new System.Drawing.Size(23, 21);
+            this.pictureBox_search.TabIndex = 1;
+            this.pictureBox_search.TabStop = false;
+            this.pictureBox_search.Click += new System.EventHandler(this.pictureBox_search_Click);
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.pictureBox_reloadShareholderList);
@@ -368,6 +408,19 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(138, 31);
             this.panel7.TabIndex = 3;
+            // 
+            // pictureBox_reloadShareholderList
+            // 
+            this.pictureBox_reloadShareholderList.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_reloadShareholderList.BackgroundImage = global::ShareholderResearch.Properties.Resources.refresh;
+            this.pictureBox_reloadShareholderList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_reloadShareholderList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox_reloadShareholderList.Location = new System.Drawing.Point(4, 8);
+            this.pictureBox_reloadShareholderList.Name = "pictureBox_reloadShareholderList";
+            this.pictureBox_reloadShareholderList.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox_reloadShareholderList.TabIndex = 4;
+            this.pictureBox_reloadShareholderList.TabStop = false;
+            this.pictureBox_reloadShareholderList.Click += new System.EventHandler(this.pictureBox_reloadShareholderList_Click);
             // 
             // label_shareholderList
             // 
@@ -492,6 +545,20 @@
             this.panel18.Size = new System.Drawing.Size(23, 21);
             this.panel18.TabIndex = 1;
             // 
+            // pictureBoxSearchStock
+            // 
+            this.pictureBoxSearchStock.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSearchStock.BackgroundImage = global::ShareholderResearch.Properties.Resources.search_32px_1181386_easyicon_net;
+            this.pictureBoxSearchStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxSearchStock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxSearchStock.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxSearchStock.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxSearchStock.Name = "pictureBoxSearchStock";
+            this.pictureBoxSearchStock.Size = new System.Drawing.Size(23, 21);
+            this.pictureBoxSearchStock.TabIndex = 1;
+            this.pictureBoxSearchStock.TabStop = false;
+            this.pictureBoxSearchStock.Click += new System.EventHandler(this.pictureBoxSearchStock_Click);
+            // 
             // panel19
             // 
             this.panel19.Controls.Add(this.pictureBox2);
@@ -501,6 +568,18 @@
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(109, 31);
             this.panel19.TabIndex = 3;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImage = global::ShareholderResearch.Properties.Resources.center_focus_24px_1223635_easyicon_net;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.Location = new System.Drawing.Point(4, 8);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
             // 
             // label6
             // 
@@ -536,6 +615,18 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(326, 29);
             this.panel13.TabIndex = 4;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::ShareholderResearch.Properties.Resources.team_34_182810368349px_1220051_easyicon_net;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Location = new System.Drawing.Point(4, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // label4
             // 
@@ -648,6 +739,19 @@
             this.label_manuallyInput.TabIndex = 8;
             this.label_manuallyInput.Text = " 手动导入";
             // 
+            // pictureBox_OpenLocalJsonFile
+            // 
+            this.pictureBox_OpenLocalJsonFile.BackColor = System.Drawing.Color.White;
+            this.pictureBox_OpenLocalJsonFile.BackgroundImage = global::ShareholderResearch.Properties.Resources.folder;
+            this.pictureBox_OpenLocalJsonFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox_OpenLocalJsonFile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox_OpenLocalJsonFile.Location = new System.Drawing.Point(177, 35);
+            this.pictureBox_OpenLocalJsonFile.Name = "pictureBox_OpenLocalJsonFile";
+            this.pictureBox_OpenLocalJsonFile.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_OpenLocalJsonFile.TabIndex = 11;
+            this.pictureBox_OpenLocalJsonFile.TabStop = false;
+            this.pictureBox_OpenLocalJsonFile.Click += new System.EventHandler(this.pictureBox_OpenLocalJsonFile_Click);
+            // 
             // textBox_manuallyInput_stockCode
             // 
             this.textBox_manuallyInput_stockCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -695,231 +799,6 @@
             this.label_getqgqpdata.TabIndex = 12;
             this.label_getqgqpdata.Text = " ";
             // 
-            // label_getfinancialreportp
-            // 
-            this.label_getfinancialreportp.AutoSize = true;
-            this.label_getfinancialreportp.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label_getfinancialreportp.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label_getfinancialreportp.Location = new System.Drawing.Point(184, 6);
-            this.label_getfinancialreportp.Name = "label_getfinancialreportp";
-            this.label_getfinancialreportp.Size = new System.Drawing.Size(12, 17);
-            this.label_getfinancialreportp.TabIndex = 10;
-            this.label_getfinancialreportp.Text = " ";
-            // 
-            // label_uploadsocketlistp
-            // 
-            this.label_uploadsocketlistp.AutoSize = true;
-            this.label_uploadsocketlistp.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label_uploadsocketlistp.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label_uploadsocketlistp.Location = new System.Drawing.Point(27, 6);
-            this.label_uploadsocketlistp.Name = "label_uploadsocketlistp";
-            this.label_uploadsocketlistp.Size = new System.Drawing.Size(12, 17);
-            this.label_uploadsocketlistp.TabIndex = 8;
-            this.label_uploadsocketlistp.Text = " ";
-            // 
-            // label_updatep
-            // 
-            this.label_updatep.AutoSize = true;
-            this.label_updatep.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label_updatep.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label_updatep.Location = new System.Drawing.Point(102, 6);
-            this.label_updatep.Name = "label_updatep";
-            this.label_updatep.Size = new System.Drawing.Size(12, 17);
-            this.label_updatep.TabIndex = 9;
-            this.label_updatep.Text = " ";
-            // 
-            // panel_headbar
-            // 
-            this.panel_headbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
-            this.panel_headbar.Controls.Add(this.panel3);
-            this.panel_headbar.Controls.Add(this.panel1);
-            this.panel_headbar.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.panel_headbar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_headbar.Location = new System.Drawing.Point(1, 8);
-            this.panel_headbar.Name = "panel_headbar";
-            this.panel_headbar.Size = new System.Drawing.Size(1074, 26);
-            this.panel_headbar.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.pictureBoxConfig);
-            this.panel3.Controls.Add(this.pictureBox_maximize);
-            this.panel3.Controls.Add(this.pictureBox_minimize);
-            this.panel3.Controls.Add(this.pictureBox_close);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(954, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(120, 26);
-            this.panel3.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.labelverison);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.pictureBox_logo);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(184, 26);
-            this.panel1.TabIndex = 0;
-            // 
-            // labelverison
-            // 
-            this.labelverison.AutoSize = true;
-            this.labelverison.BackColor = System.Drawing.Color.Transparent;
-            this.labelverison.Font = new System.Drawing.Font("SimHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelverison.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.labelverison.Location = new System.Drawing.Point(128, 10);
-            this.labelverison.Name = "labelverison";
-            this.labelverison.Size = new System.Drawing.Size(35, 12);
-            this.labelverison.TabIndex = 2;
-            this.labelverison.Text = "V1.01";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("SimHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label5.Location = new System.Drawing.Point(35, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 16);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "牛股研究所";
-            // 
-            // panel_base
-            // 
-            this.panel_base.Controls.Add(this.panelWorkspace);
-            this.panel_base.Controls.Add(this.panelTool);
-            this.panel_base.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_base.Location = new System.Drawing.Point(1, 34);
-            this.panel_base.Margin = new System.Windows.Forms.Padding(0);
-            this.panel_base.Name = "panel_base";
-            this.panel_base.Size = new System.Drawing.Size(1074, 616);
-            this.panel_base.TabIndex = 2;
-            // 
-            // panelTool
-            // 
-            this.panelTool.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.panelTool.Controls.Add(this.panel5);
-            this.panelTool.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelTool.Location = new System.Drawing.Point(0, 0);
-            this.panelTool.Name = "panelTool";
-            this.panelTool.Size = new System.Drawing.Size(330, 616);
-            this.panelTool.TabIndex = 1;
-            // 
-            // panelWorkspace
-            // 
-            this.panelWorkspace.Controls.Add(this.splitContainer1);
-            this.panelWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelWorkspace.Location = new System.Drawing.Point(330, 0);
-            this.panelWorkspace.Name = "panelWorkspace";
-            this.panelWorkspace.Size = new System.Drawing.Size(744, 616);
-            this.panelWorkspace.TabIndex = 2;
-            // 
-            // pictureBox_next
-            // 
-            this.pictureBox_next.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_next.BackgroundImage = global::ShareholderResearch.Properties.Resources.next;
-            this.pictureBox_next.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox_next.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox_next.Location = new System.Drawing.Point(80, 5);
-            this.pictureBox_next.Name = "pictureBox_next";
-            this.pictureBox_next.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_next.TabIndex = 6;
-            this.pictureBox_next.TabStop = false;
-            this.pictureBox_next.Click += new System.EventHandler(this.pictureBox_next_Click);
-            // 
-            // pictureBox_previous
-            // 
-            this.pictureBox_previous.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_previous.BackgroundImage = global::ShareholderResearch.Properties.Resources.back;
-            this.pictureBox_previous.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox_previous.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox_previous.Location = new System.Drawing.Point(3, 5);
-            this.pictureBox_previous.Name = "pictureBox_previous";
-            this.pictureBox_previous.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_previous.TabIndex = 5;
-            this.pictureBox_previous.TabStop = false;
-            this.pictureBox_previous.Click += new System.EventHandler(this.pictureBox_previous_Click);
-            // 
-            // pictureBox_search
-            // 
-            this.pictureBox_search.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_search.BackgroundImage = global::ShareholderResearch.Properties.Resources.search_32px_1181386_easyicon_net;
-            this.pictureBox_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_search.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox_search.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox_search.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox_search.Name = "pictureBox_search";
-            this.pictureBox_search.Size = new System.Drawing.Size(23, 21);
-            this.pictureBox_search.TabIndex = 1;
-            this.pictureBox_search.TabStop = false;
-            this.pictureBox_search.Click += new System.EventHandler(this.pictureBox_search_Click);
-            // 
-            // pictureBox_reloadShareholderList
-            // 
-            this.pictureBox_reloadShareholderList.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_reloadShareholderList.BackgroundImage = global::ShareholderResearch.Properties.Resources.refresh;
-            this.pictureBox_reloadShareholderList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_reloadShareholderList.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox_reloadShareholderList.Location = new System.Drawing.Point(4, 8);
-            this.pictureBox_reloadShareholderList.Name = "pictureBox_reloadShareholderList";
-            this.pictureBox_reloadShareholderList.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox_reloadShareholderList.TabIndex = 4;
-            this.pictureBox_reloadShareholderList.TabStop = false;
-            this.pictureBox_reloadShareholderList.Click += new System.EventHandler(this.pictureBox_reloadShareholderList_Click);
-            // 
-            // pictureBoxSearchStock
-            // 
-            this.pictureBoxSearchStock.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxSearchStock.BackgroundImage = global::ShareholderResearch.Properties.Resources.search_32px_1181386_easyicon_net;
-            this.pictureBoxSearchStock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBoxSearchStock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxSearchStock.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxSearchStock.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxSearchStock.Name = "pictureBoxSearchStock";
-            this.pictureBoxSearchStock.Size = new System.Drawing.Size(23, 21);
-            this.pictureBoxSearchStock.TabIndex = 1;
-            this.pictureBoxSearchStock.TabStop = false;
-            this.pictureBoxSearchStock.Click += new System.EventHandler(this.pictureBoxSearchStock_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImage = global::ShareholderResearch.Properties.Resources.center_focus_24px_1223635_easyicon_net;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Location = new System.Drawing.Point(4, 8);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::ShareholderResearch.Properties.Resources.team_34_182810368349px_1220051_easyicon_net;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox_OpenLocalJsonFile
-            // 
-            this.pictureBox_OpenLocalJsonFile.BackColor = System.Drawing.Color.White;
-            this.pictureBox_OpenLocalJsonFile.BackgroundImage = global::ShareholderResearch.Properties.Resources.folder;
-            this.pictureBox_OpenLocalJsonFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox_OpenLocalJsonFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox_OpenLocalJsonFile.Location = new System.Drawing.Point(177, 35);
-            this.pictureBox_OpenLocalJsonFile.Name = "pictureBox_OpenLocalJsonFile";
-            this.pictureBox_OpenLocalJsonFile.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_OpenLocalJsonFile.TabIndex = 11;
-            this.pictureBox_OpenLocalJsonFile.TabStop = false;
-            this.pictureBox_OpenLocalJsonFile.Click += new System.EventHandler(this.pictureBox_OpenLocalJsonFile_Click);
-            // 
             // pictureBox_getqgqpdata
             // 
             this.pictureBox_getqgqpdata.BackColor = System.Drawing.Color.Transparent;
@@ -952,6 +831,17 @@
             this.pictureBox_uploadsocketlist.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pictureBox_uploadsocketlist.MouseHover += new System.EventHandler(this.pictureBox_uploadsocketlist_MouseHover);
             // 
+            // label_getfinancialreportp
+            // 
+            this.label_getfinancialreportp.AutoSize = true;
+            this.label_getfinancialreportp.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_getfinancialreportp.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label_getfinancialreportp.Location = new System.Drawing.Point(184, 6);
+            this.label_getfinancialreportp.Name = "label_getfinancialreportp";
+            this.label_getfinancialreportp.Size = new System.Drawing.Size(12, 17);
+            this.label_getfinancialreportp.TabIndex = 10;
+            this.label_getfinancialreportp.Text = " ";
+            // 
             // pictureBox_getfinancialreport
             // 
             this.pictureBox_getfinancialreport.BackColor = System.Drawing.Color.Transparent;
@@ -968,6 +858,28 @@
             this.pictureBox_getfinancialreport.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pictureBox_getfinancialreport.MouseHover += new System.EventHandler(this.pictureBox_getfinancialreport_MouseHover);
             // 
+            // label_uploadsocketlistp
+            // 
+            this.label_uploadsocketlistp.AutoSize = true;
+            this.label_uploadsocketlistp.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_uploadsocketlistp.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label_uploadsocketlistp.Location = new System.Drawing.Point(27, 6);
+            this.label_uploadsocketlistp.Name = "label_uploadsocketlistp";
+            this.label_uploadsocketlistp.Size = new System.Drawing.Size(12, 17);
+            this.label_uploadsocketlistp.TabIndex = 8;
+            this.label_uploadsocketlistp.Text = " ";
+            // 
+            // label_updatep
+            // 
+            this.label_updatep.AutoSize = true;
+            this.label_updatep.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_updatep.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label_updatep.Location = new System.Drawing.Point(102, 6);
+            this.label_updatep.Name = "label_updatep";
+            this.label_updatep.Size = new System.Drawing.Size(12, 17);
+            this.label_updatep.TabIndex = 9;
+            this.label_updatep.Text = " ";
+            // 
             // pictureBox_update
             // 
             this.pictureBox_update.BackColor = System.Drawing.Color.Transparent;
@@ -983,6 +895,30 @@
             this.pictureBox_update.MouseEnter += new System.EventHandler(this.pictureBox_MouseEnter);
             this.pictureBox_update.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pictureBox_update.MouseHover += new System.EventHandler(this.pictureBox_update_MouseHover);
+            // 
+            // panel_headbar
+            // 
+            this.panel_headbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            this.panel_headbar.Controls.Add(this.panel3);
+            this.panel_headbar.Controls.Add(this.panel1);
+            this.panel_headbar.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.panel_headbar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_headbar.Location = new System.Drawing.Point(1, 8);
+            this.panel_headbar.Name = "panel_headbar";
+            this.panel_headbar.Size = new System.Drawing.Size(1074, 26);
+            this.panel_headbar.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureBoxConfig);
+            this.panel3.Controls.Add(this.pictureBox_maximize);
+            this.panel3.Controls.Add(this.pictureBox_minimize);
+            this.panel3.Controls.Add(this.pictureBox_close);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(954, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(120, 26);
+            this.panel3.TabIndex = 1;
             // 
             // pictureBoxConfig
             // 
@@ -1045,6 +981,40 @@
             this.pictureBox_close.MouseLeave += new System.EventHandler(this.pictureBox_MouseLeave);
             this.pictureBox_close.MouseHover += new System.EventHandler(this.pictureBox_close_MouseHover);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.labelverison);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.pictureBox_logo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(184, 26);
+            this.panel1.TabIndex = 0;
+            // 
+            // labelverison
+            // 
+            this.labelverison.AutoSize = true;
+            this.labelverison.BackColor = System.Drawing.Color.Transparent;
+            this.labelverison.Font = new System.Drawing.Font("SimHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelverison.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.labelverison.Location = new System.Drawing.Point(128, 10);
+            this.labelverison.Name = "labelverison";
+            this.labelverison.Size = new System.Drawing.Size(35, 12);
+            this.labelverison.TabIndex = 2;
+            this.labelverison.Text = "V1.01";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("SimHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label5.Location = new System.Drawing.Point(35, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 16);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "牛股研究所";
+            // 
             // pictureBox_logo
             // 
             this.pictureBox_logo.BackgroundImage = global::ShareholderResearch.Properties.Resources.market_32px_1233577_easyicon_net;
@@ -1056,6 +1026,36 @@
             this.pictureBox_logo.TabIndex = 2;
             this.pictureBox_logo.TabStop = false;
             this.pictureBox_logo.Click += new System.EventHandler(this.pictureBox_logo_Click);
+            // 
+            // panel_base
+            // 
+            this.panel_base.Controls.Add(this.panelWorkspace);
+            this.panel_base.Controls.Add(this.panelTool);
+            this.panel_base.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_base.Location = new System.Drawing.Point(1, 34);
+            this.panel_base.Margin = new System.Windows.Forms.Padding(0);
+            this.panel_base.Name = "panel_base";
+            this.panel_base.Size = new System.Drawing.Size(1074, 616);
+            this.panel_base.TabIndex = 2;
+            // 
+            // panelWorkspace
+            // 
+            this.panelWorkspace.Controls.Add(this.splitContainer1);
+            this.panelWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelWorkspace.Location = new System.Drawing.Point(330, 0);
+            this.panelWorkspace.Name = "panelWorkspace";
+            this.panelWorkspace.Size = new System.Drawing.Size(744, 616);
+            this.panelWorkspace.TabIndex = 2;
+            // 
+            // panelTool
+            // 
+            this.panelTool.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            this.panelTool.Controls.Add(this.panel5);
+            this.panelTool.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelTool.Location = new System.Drawing.Point(0, 0);
+            this.panelTool.Name = "panelTool";
+            this.panelTool.Size = new System.Drawing.Size(330, 616);
+            this.panelTool.TabIndex = 1;
             // 
             // MainForm
             // 
@@ -1085,55 +1085,55 @@
             this.panel14.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_next)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_previous)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_search)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_reloadShareholderList)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
             this.panel17.PerformLayout();
             this.panel18.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchStock)).EndInit();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_controlPanel.ResumeLayout(false);
             this.panel_manuallyInput.ResumeLayout(false);
             this.panel_manuallyInput.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_OpenLocalJsonFile)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel_headbar.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel_base.ResumeLayout(false);
-            this.panelTool.ResumeLayout(false);
-            this.panelWorkspace.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_next)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_previous)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_search)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_reloadShareholderList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSearchStock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_OpenLocalJsonFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_getqgqpdata)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_uploadsocketlist)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_getfinancialreport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_update)).EndInit();
+            this.panel_headbar.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxConfig)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_maximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_minimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_close)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_logo)).EndInit();
+            this.panel_base.ResumeLayout(false);
+            this.panelWorkspace.ResumeLayout(false);
+            this.panelTool.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

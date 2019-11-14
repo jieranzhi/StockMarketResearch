@@ -222,6 +222,7 @@ namespace ShareholderResearch.Utils
             var reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
+                return;
                 var _id = "null";
                 while (reader.Read())
                 {
