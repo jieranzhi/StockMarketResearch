@@ -12,7 +12,7 @@ namespace ShareholderResearch.Utils
 {
     public class DatabaseHelper
     {
-        private static string password = "gT2?GErn#MuDfw(UR4:]S%L<{/}t>3p*W6'qkYaF$,!vxJ~ch";
+        // private static string password = "gT2?GErn#MuDfw(UR4:]S%L<{/}t>3p*W6'qkYaF$,!vxJ~ch";
         /////////////////////////// Database /////////////////////////////
         public static void LoadDatabase()
         {
@@ -75,6 +75,12 @@ namespace ShareholderResearch.Utils
                     " FLOWOUTL VARCHAR(100), ZLJLR VARCHAR(100))";
                 SQLiteCommand cmd4 = new SQLiteCommand(sql4, SystemSetting.sqliteConnection);
                 cmd4.ExecuteNonQuery();
+
+                // CREATE INDEX
+                CreateIndexOnTable("topTenStockholder", "IdxTenShareHolder", new string[] { "stockCode", "shareholderName" });
+                CreateIndexOnTable("stockList", "IdxStockList", new string[] { "stockCode" });
+                CreateIndexOnTable("financialReport", "IdxFinancialReport", new string[] { "stockCode", "dateOfRecord" });
+                CreateIndexOnTable("qgqpData", "IdxQgqpData", new string[] { "TRADECODE", "TRADEDATE" });
             }
             catch (Exception ex)
             {
@@ -98,14 +104,14 @@ namespace ShareholderResearch.Utils
             {
                 if (init)
                 {
-                    string connection_string = $"Data Source = {SystemSetting.databaseFileDir}; Version = 3;";
+                    string connection_string = $"Data Source = {SystemSetting.databaseFileDir};";
                     SystemSetting.sqliteConnection = new SQLiteConnection(connection_string);
-                    SystemSetting.sqliteConnection.SetPassword(password);
+                    //SystemSetting.sqliteConnection.SetPassword(password);
                     SystemSetting.sqliteConnection.Open();
                 }
                 else
                 {
-                    string connection_string = $"Data Source = {SystemSetting.databaseFileDir}; Version = 3;Password={password};";
+                    string connection_string = $"Data Source = {SystemSetting.databaseFileDir};"; // Password={password};
                     SystemSetting.sqliteConnection = new SQLiteConnection(connection_string);
                     SystemSetting.sqliteConnection.Open();
                 }
@@ -125,7 +131,7 @@ namespace ShareholderResearch.Utils
         // get all records
         public static SQLiteDataReader GetAll006030StockRecords(string tableName)
         {
-            string sql = $"select * from {tableName} where stockCode like {SQLString("sz00%")} or stockCode like {SQLString("sz30%")} or stockCode like {SQLString("sh60%")}";
+            string sql = $"select * from {tableName} where stockCode like {SQLString("sz00%")} or stockCode like {SQLString("sz30%")} or stockCode like {SQLString("sh60%")} or stockCode like {SQLString("sh68%")}";
             SQLiteCommand cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
             return cmd.ExecuteReader();
         }
@@ -213,50 +219,29 @@ namespace ShareholderResearch.Utils
             SQLiteCommand cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
             cmd.ExecuteNonQuery();
         }
+        public static void CreateIndexOnTable(string tableName, string indexName, params string[] indexColumn)
+        {
+            try
+            {
+                var sql = $"create index {indexName} on {tableName}({string.Join(",", indexColumn)})";
+                var cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
+                cmd.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            { }
+        }
+
         // save to database
         public static void UpdateTopTenStockholder(string stockCode, Dictionary<string,string> sdltgd)
         {
-            var sqlId = "select _id from topTenStockholder where " +
-                $"stockCode == {SQLString(stockCode)} and shareholderName=={SQLString(sdltgd["gdmc"])} and dateOfRecord=={SQLString(sdltgd["rq"])}";
-            var cmd = new SQLiteCommand(sqlId, SystemSetting.sqliteConnection);
-            var reader = cmd.ExecuteReader();
-            if (reader.HasRows)
-            {
-                return;
-                var _id = "null";
-                while (reader.Read())
-                {
-                    _id = reader["_id"].ToString();
-                }
-                // replace
-                var sql = $"replace into topTenStockholder (_id, ranking, stockCode, dateOfRecord, " +
-                    $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
-                    $"statusChange, changeRate) values "+
-                    $"({_id}, {SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
-                    $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
-                var cmdReplace = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
-                cmdReplace.ExecuteNonQuery();
-            }
-            else
-            {
-                // insert
-                var sql = $"insert into topTenStockholder (ranking, stockCode, dateOfRecord, " +
-                    $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
-                    $"statusChange, changeRate) values " +
-                    $"({SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
-                    $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
-                var cmdInsert = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
-                cmdInsert.ExecuteNonQuery();
-            }
-
-            //var sql = $"insert or replace into topTenStockholder (_id, ranking, stockCode, dateOfRecord, " +
-            //    $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
-            //    $"statusChange, changeRate) values ((select _id from topTenStockholder where " +
-            //    $"stockCode == {SQLString(stockCode)} and shareholderName=={SQLString(sdltgd["gdmc"])} and dateOfRecord=={SQLString(sdltgd["rq"])}), " +
-            //    $"{SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
-            //    $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
-            //var cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
-            //cmd.ExecuteNonQuery();
+            var sql = $"insert or replace into topTenStockholder (_id, ranking, stockCode, dateOfRecord, " +
+                $"shareholderName, shareholderType, shareType, numberOfShares, percentageOfTotalTradableShares, " +
+                $"statusChange, changeRate) values ((select _id from topTenStockholder where " +
+                $"stockCode == {SQLString(stockCode)} and shareholderName=={SQLString(sdltgd["gdmc"])} and dateOfRecord=={SQLString(sdltgd["rq"])}), " +
+                $"{SQLString(sdltgd["mc"])}, {SQLString(stockCode)}, {SQLString(sdltgd["rq"])}, {SQLString(sdltgd["gdmc"])},{SQLString(sdltgd["gdxz"])}," +
+                $"{SQLString(sdltgd["gflx"])},{SQLString(sdltgd["cgs"])},{SQLString(sdltgd["zltgbcgbl"])},{SQLString(sdltgd["zj"])},{SQLString(sdltgd["bdbl"])})";
+            var cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
+            var rt = cmd.ExecuteNonQuery();
         }
         // save to database
         public static void UpdateFinancialReport(string stockCode, Dictionary<string, string> report)
@@ -271,7 +256,7 @@ namespace ShareholderResearch.Utils
                 $", {SQLString(report["gsjlrtbzz"])}, {SQLString(report["kfjlrtbzz"])}, {SQLString(report["yyzsrgdhbzz"])}, {SQLString(report["gsjlrgdhbzz"])}, {SQLString(report["kfjlrgdhbzz"])}," +
                 $" {SQLString(report["tbjzcsyl"])}, {SQLString(report["tbzzcsyl"])}, {SQLString(report["mll"])}, {SQLString(report["jll"])})";
             SQLiteCommand cmd = new SQLiteCommand(sql, SystemSetting.sqliteConnection);
-            cmd.ExecuteNonQuery();
+            var rt = cmd.ExecuteNonQuery();
         }
         // save to database
         public static void UpdateQGQPData(string stockCode, StockCommentList report)

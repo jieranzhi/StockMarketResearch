@@ -24,6 +24,7 @@ namespace ShareholderResearch.Utils
             }
             catch (Exception ex)
             {
+                responseString = "!!error!!";
                 SystemSetting.LogAndDisplayError(ex, $"DataCollector.cs, line 27 \r\n [Url]: {url} \r\n");
             }
             return responseString;
@@ -55,6 +56,11 @@ namespace ShareholderResearch.Utils
             var stockList = StockList.FromJson(rawJson);
             var lstStock = stockList.Data.Diff.Select(p => new string[] { (p.F12.StartsWith("6")?"sh":"sz") + p.F12, p.F14 }).ToList();
             return lstStock;
+        }
+
+        public static string JsonEscape(string oriJson)
+        {
+            return oriJson.Replace(@"\u0027", "-");
         }
 
     }

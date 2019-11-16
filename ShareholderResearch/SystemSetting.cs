@@ -13,6 +13,7 @@ namespace ShareholderResearch
     public static class SystemSetting
     {
         public static string version = "v 1.45";
+        public static string defaultPage;
         public static string rootUrlOfTopTenShareHolder = "http://emweb.securities.eastmoney.com/PC_HSF10/ShareholderResearch/ShareholderResearchAjax?code=";
         public static string rootUrlOfFinancialReport = "http://emweb.securities.eastmoney.com/NewFinanceAnalysis/MainTargetAjax?ctype=4&type=0&code=";
         public static string kCurve = "http://quote.eastmoney.com/"; // "http://stockpage.10jqka.com.cn/";//

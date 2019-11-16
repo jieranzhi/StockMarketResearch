@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -25,6 +26,7 @@ namespace ShareholderResearch
         const UInt32 HTBOTTOMRIGHT = 17;
         const UInt32 HTBOTTOM = 15;
         const int RESIZE_HANDLE_SIZE = 10;
+        private static readonly object lockObject  = new object();
 
         private string selectedStockCode;
 
@@ -64,10 +66,6 @@ namespace ShareholderResearch
         }
 
         //// FUNCTIONS ////
-        private string JsonEscape(string oriJson)
-        {
-            return oriJson.Replace(@"\u0027", "-");
-        }
 
         private void QueryAndDisplayTopTenShareholder(string name)
         {
@@ -244,7 +242,7 @@ namespace ShareholderResearch
                 MessageBox.Show("未找到记录值！");
             }
         }
-        
+
         private void QueryQgqpData(double proMin, double proMax)
         {
             var reader = DatabaseHelper.QueryQGQPDataByMainControl(proMin, proMax);
@@ -331,252 +329,6 @@ namespace ShareholderResearch
         {
             webBrowserInner.Navigate(url);
         }
-        
-        public void FetchStockList(IProgress<double> progress)
-        {
-            try
-            {
-                DataCollector dataCollector = new DataCollector();
-                string rawStockList = dataCollector.GetHttpResponse(SystemSetting.stockListUrl, false).Result;
-                List<string[]> lstStock = dataCollector.GetStockList(rawStockList); //dataCollector.GetStockList(rawStockList, SystemSetting.stockListMatchPattern);
-                int dataCount = lstStock.Count;
-                DatabaseHelper.ClearTable("stockList");
-                int i = 0;
-                foreach (string[] stock in lstStock)
-                {
-                    DatabaseHelper.UpdateStockList(stock[0], stock[1]);
-                    i++;
-                    progress.Report(100.0 * i / dataCount);
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemSetting.LogAndDisplayError(ex, "MainForm.cs, line 117");
-            }
-        }
-
-        public void FetchTopTenShareholder(IProgress<double> progress)
-        {
-            try
-            {
-                var fileDir = SystemSetting.downloadJsonDir + "topten.tmp";
-                int dataCount = DatabaseHelper.Get006030StockRecordCount("stockList");
-
-                var topTenShareholderList = new Dictionary<string, TopTenShareholderJsonPackage>();
-                var jsonCollection = new StringBuilder(dataCount);
-                var stockCodeTemp = "";
-
-                int i = 0;
-                if (File.Exists(fileDir))
-                {
-                    var rawJsonList = File.ReadAllLines(fileDir);
-                    foreach (var record in rawJsonList)
-                    {
-                        i++;
-                        var line = record.Split(new string[] { "|||" }, StringSplitOptions.None);
-                        var stockCode = line[0];
-                        var rawTopTenShareHolder = line[1];
-                        var package = TopTenShareholderJsonParser.FromJson(rawTopTenShareHolder);
-                        topTenShareholderList.Add(stockCode, package);
-                        progress.Report(50.0 * i / dataCount);
-                        Console.WriteLine($"{i}:{stockCode} --- {rawTopTenShareHolder}");
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        var reader = DatabaseHelper.GetAll006030StockRecords("stockList");
-                        var stockCodeList = new List<string>();
-                        while (reader.Read())
-                        {
-                            stockCodeList.Add(reader[1].ToString());
-                        }
-                        if (stockCodeList.Any())
-                        {
-                            foreach (var stockCode in stockCodeList)
-                            {
-                                i++;
-                                stockCodeTemp = stockCode;
-                                var dataCollector = new DataCollector();
-                                var rawTopTenShareHolder
-                                    = JsonEscape(dataCollector.GetHttpResponse(SystemSetting.rootUrlOfTopTenShareHolder + stockCode, false).Result);
-                                var package = TopTenShareholderJsonParser.FromJson(rawTopTenShareHolder);
-                                topTenShareholderList.Add(stockCode, package);
-                                jsonCollection.AppendLine($"{stockCode}|||{rawTopTenShareHolder}");
-                                progress.Report(50.0 * i / dataCount);
-                                Console.WriteLine($"{i}:{stockCode} --- {rawTopTenShareHolder}");
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        SystemSetting.LogAndDisplayError(ex, $"{stockCodeTemp} MainForm.cs, line 96");
-                        return;
-                    }
-
-                    if (jsonCollection.Length > 0)
-                    {
-                        File.WriteAllText(fileDir, jsonCollection.ToString());
-                    }
-                }
-
-                try
-                {
-                    i = 0;
-                    if (topTenShareholderList.Any())
-                    {
-                        DatabaseHelper.OptimizationBegin();
-                        foreach (var dicPackage in topTenShareholderList)
-                        {
-                            i++;
-                            var stockCode = dicPackage.Key;
-                            var package = dicPackage.Value;
-                            stockCodeTemp = stockCode;
-                            foreach (Sdltgd sdltgdItem in package.Sdltgd)
-                            {
-                                foreach (var sdltgd in sdltgdItem.SdltgdSdltgd)
-                                {
-                                    DatabaseHelper.UpdateTopTenStockholder(stockCode, sdltgd);
-                                    Console.WriteLine($"{i}/{dataCount}:{stockCode} --- {sdltgd["gdmc"]}");
-                                }
-                            }
-                            progress.Report(50.0 * i / dataCount + 50);
-                        }
-                        DatabaseHelper.OptimizationEnd();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    SystemSetting.LogAndDisplayError(ex, $"{stockCodeTemp} MainForm.cs, line 96");
-                    return;
-                }
-
-                if (File.Exists(fileDir))
-                {
-                    File.Delete(fileDir);
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemSetting.LogAndDisplayError(ex, "MainForm.cs, line 102");
-            }
-        }
-
-        public void FetchFinanceReportProgress(IProgress<double> progress)
-        {
-            try
-            {
-                int dataCount = DatabaseHelper.Get006030StockRecordCount("stockList");
-                var reader = DatabaseHelper.GetAll006030StockRecords("stockList");
-                int i = 0;
-                while (reader.Read())
-                {
-                    string stockCode = reader[1].ToString();
-                    try
-                    {
-                        i++;
-                        DataCollector dataCollector = new DataCollector();
-                        string rawFinantialReport = JsonEscape(dataCollector.GetHttpResponse(SystemSetting.rootUrlOfFinancialReport + stockCode, false).Result);
-                        Console.WriteLine($"{i}:{stockCode} --- {rawFinantialReport}");
-                        Dictionary<string, string>[] package = FinancialReportJsonParser.FromJson(rawFinantialReport);
-                        foreach (Dictionary<string, string> report in package)
-                        {
-                            DatabaseHelper.UpdateFinancialReport(stockCode, report);
-                        }
-                        progress.Report(100.0 * i / dataCount);
-                    }
-                    catch (Exception ex0)
-                    {
-                        SystemSetting.LogAndDisplayError(ex0, $"{stockCode} MainForm.cs, line 169");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemSetting.LogAndDisplayError(ex, "MainForm.cs, line 178");
-            }
-        }
-
-        public void FetchQGQP(IProgress<double> progress)
-        {
-            try
-            {
-                int dataCount = DatabaseHelper.Get006030StockRecordCount("stockList");
-                var reader = DatabaseHelper.GetAll006030StockRecords("stockList");
-                // DatabaseHelper.ClearTable("qgqpData");
-                int i = 0;
-                while (reader.Read())
-                {
-                    string stockCode = reader[1].ToString().ToLower().Replace("sz","").Replace("sh","");
-                    try
-                    {
-                        i++;
-                        DataCollector dataCollector = new DataCollector();
-                        string qgqpData = JsonEscape(dataCollector.GetHttpResponse(SystemSetting.stockQGQPURL.Replace("{code}", stockCode), false).Result);
-                        Console.WriteLine($"{i}:{stockCode} --- {qgqpData}");
-                        var package = StockCommentList.FromJson(qgqpData);
-                        foreach (StockCommentList comment in package)
-                        {
-                            DatabaseHelper.UpdateQGQPData(stockCode, comment);
-                        }
-                        progress.Report(100.0 * i / dataCount);
-                    }
-                    catch (Exception ex0)
-                    {
-                        SystemSetting.LogAndDisplayError(ex0, $"{stockCode} MainForm.cs, line 169");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemSetting.LogAndDisplayError(ex, "MainForm.cs, line 178");
-            }
-        }
-
-        public void ManuallyFetchTopTenShareholder(IProgress<double> progress, string stockCode, string rawTopTenShareHolder)
-        {
-            try
-            {
-                TopTenShareholderJsonPackage package = TopTenShareholderJsonParser.FromJson(JsonEscape(rawTopTenShareHolder));
-                int dataCount = 0;
-                foreach (Sdltgd sdltgdItem in package.Sdltgd) { dataCount += sdltgdItem.SdltgdSdltgd.Length; }
-                int i = 0;
-                foreach (Sdltgd sdltgdItem in package.Sdltgd)
-                {
-                    foreach (Dictionary<String, string> sdltgd in sdltgdItem.SdltgdSdltgd)
-                    {
-                        DatabaseHelper.UpdateTopTenStockholder(stockCode, sdltgd);
-                        i++;
-                        progress.Report(100.0 * i / dataCount);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemSetting.LogAndDisplayError(ex, "MainForm.cs, line 102");
-            }
-        }
-
-        public void ManuallyFetchFinanceReportProgress(IProgress<double> progress, string stockCode, string rawFinancialReport)
-        {
-            try
-            {
-                int i = 0;
-                Dictionary<string, string>[] package = FinancialReportJsonParser.FromJson(JsonEscape(rawFinancialReport));
-                int dataCount = package.Length;
-                foreach (Dictionary<string, string> report in package)
-                {
-                    DatabaseHelper.UpdateFinancialReport(stockCode, report);
-                    i++;
-                    progress.Report(100.0 * i / dataCount);
-                }
-            }
-            catch (Exception ex)
-            {
-                SystemSetting.LogAndDisplayError(ex, "MainForm.cs, line 178");
-            }
-        }
 
         public void DisplayLoadingUI(bool display)
         {
@@ -604,8 +356,10 @@ namespace ShareholderResearch
             SystemSetting.databaseFileDir = SystemSetting.systemDir + "\\record.db";
             SystemSetting.errorLogDir = SystemSetting.systemDir + "\\error_log\\";
             SystemSetting.downloadJsonDir = SystemSetting.systemDir + "\\download\\";
+            SystemSetting.defaultPage = SystemSetting.systemDir + "\\default.html";
             SystemSetting.CheckDirectory(SystemSetting.errorLogDir);
             SystemSetting.CheckDirectory(SystemSetting.downloadJsonDir);
+            webBrowserInner.Navigate(SystemSetting.defaultPage);
             DatabaseHelper.LoadDatabase();
             LoadShareholderNameList();
         }
@@ -845,7 +599,7 @@ namespace ShareholderResearch
                             label_updatep.Text = Math.Round(percentage, 2) + "%";
                         }
                         );
-                    await Task.Run(() => FetchTopTenShareholder(fetchTopTenShareholderProgress));
+                    await Task.Run(() => WebCrawler.Instance.FetchTopTenShareholder(fetchTopTenShareholderProgress));
                 }
             }
         }
@@ -870,7 +624,7 @@ namespace ShareholderResearch
                             label_getfinancialreportp.Text = Math.Round(percentage, 2) + "%";
                         }
                         );
-                    await Task.Run(() => FetchFinanceReportProgress(fetchFinanceReportProgress));
+                    await Task.Run(() => WebCrawler.Instance.FetchFinanceReportProgress(fetchFinanceReportProgress));
                 }
             }
         }
@@ -888,7 +642,7 @@ namespace ShareholderResearch
                             label_uploadsocketlistp.Text = Math.Round(percentage, 2) + "%";
                         }
                         );
-                    await Task.Run(() => FetchStockList(fetchStockListProgress));
+                    await Task.Run(() => WebCrawler.Instance.FetchStockList(fetchStockListProgress));
                 }
             }
         }
@@ -916,12 +670,12 @@ namespace ShareholderResearch
                     {
                         case "updateTopTenShareholder":
                             {
-                                await Task.Run(() => ManuallyFetchTopTenShareholder(manuallyInputProgress, stockCode, rawData));
+                                await Task.Run(() => WebCrawler.Instance.ManuallyFetchTopTenShareholder(manuallyInputProgress, stockCode, rawData));
                                 break;
                             }
                         case "getFinancialReport":
                             {
-                                await Task.Run(() => ManuallyFetchFinanceReportProgress(manuallyInputProgress, stockCode, rawData));
+                                await Task.Run(() => WebCrawler.Instance.ManuallyFetchFinanceReportProgress(manuallyInputProgress, stockCode, rawData));
                                 break;
                             }
                     }
@@ -988,7 +742,7 @@ namespace ShareholderResearch
                             label_getqgqpdata.Text = Math.Round(percentage, 2) + "%";
                         }
                         );
-                    await Task.Run(() => FetchQGQP(fetchQGQPDataProgress));
+                    await Task.Run(() => WebCrawler.Instance.FetchQGQP(fetchQGQPDataProgress));
                 }
             }
         }
@@ -1072,6 +826,7 @@ namespace ShareholderResearch
                 var stockCode = codeArray[0].ToLower().Replace("sh", "").Replace("sz", "");
                 selectedStockCode = stockCode;
             }
+
         }
 
         private void pictureBox_logo_Click(object sender, EventArgs e)
